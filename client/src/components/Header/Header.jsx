@@ -1,10 +1,24 @@
 import ron from "../../assets/ron.png";
 import ogre from "../../assets/ogre.png";
 import ghoul from "../../assets/ghoul.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
-  const [time, setTime] = useState(0);
+  const [secondsElapsed, setSecondsElapsed] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSecondsElapsed((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const seconds = secondsElapsed % 60;
+  const hours = Math.floor(secondsElapsed / 3600);
+  const minutes = Math.floor((secondsElapsed % 3600) / 60);
+
+  const format = (time) => time.toString().padStart(2, "0");
 
   return (
     <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-7 justify-between items-center">
@@ -26,7 +40,9 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div class="text-xl">Time: </div>
+      <div class="text-xl">
+        Time: {format(hours)}:{format(minutes)}:{format(seconds)}
+      </div>
     </header>
   );
 }
