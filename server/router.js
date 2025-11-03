@@ -18,7 +18,15 @@ router.post("/check-data", async (req, res) => {
     },
   });
   console.log(ron);
-  res.status(200).json({ body });
+  if (
+    ron.minX <= body.x &&
+    body.x <= ron.maxX &&
+    ron.minY <= body.y &&
+    body.y <= ron.maxY
+  ) {
+    return res.status(200).json(ron);
+  }
+  return res.status(201).json({ message: "coordinates invalid" });
 });
 
 module.exports = router;
