@@ -56,4 +56,47 @@ describe("coordinate confirmation", () => {
 
     expect(res.body).toEqual({ message: "coordinates invalid" });
   });
+
+  test("return ghoul object for correct coordinates", async () => {
+    prisma.charcoords.findUnique.mockResolvedValue({
+      id: 1,
+      name: "Ghoul",
+      minX: 16,
+      maxX: 52,
+      minY: 119,
+      maxY: 233,
+    });
+
+    const data = { x: 30, y: 200 };
+
+    const res = await request(app).post("/check-data").send(data);
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual({
+      id: 1,
+      name: "Ghoul",
+      minX: 16,
+      maxX: 52,
+      minY: 119,
+      maxY: 233,
+    });
+  });
+
+  test("return null object for incorrect coordinates", async () => {
+    prisma.charcoords.findUnique.mockResolvedValue({
+      id: 1,
+      name: "Ghoul",
+      minX: 16,
+      maxX: 52,
+      minY: 119,
+      maxY: 233,
+    });
+
+    const data = { x: 15, y: 200 };
+
+    const res = await request(app).post("/check-data").send(data);
+
+    expect(res.statusCode).toBe(201);
+    expect(res.body).toEqual({ message: "coordinates invalid" });
+  });
 });
