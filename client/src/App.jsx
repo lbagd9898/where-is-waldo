@@ -12,6 +12,8 @@ function App() {
     ron: true,
   });
 
+  const [flash, setFlash] = useState(false);
+
   async function checkCoords(x, y, charId) {
     const payload = { x, y, charId };
     console.log(payload);
@@ -22,15 +24,34 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.char == null) {
+          missedChord();
+        } else {
+          hitChar(data.char);
+        }
       })
       .catch((error) => console.log(error));
   }
 
+  function missedChord() {
+    triggerFlash();
+  }
+
+  function hitChar(char) {
+    console.log(char);
+    const name = char.name.toLowerCase();
+    setRemainingChars((prev) => ({ ...prev, [name]: false }));
+  }
+
+  function triggerFlash() {
+    setFlash(true);
+    setTimeout(() => setFlash(false), 2000); // remove class after 2 seconds
+  }
+
   return (
-    <div class="flex flex-col h-screen">
+    <div class={`flex flex-col h-screen`}>
       <Header></Header>
-      <Content checkCoords={checkCoords}></Content>
+      <Content checkCoords={checkCoords} flash={flash}></Content>
       <Footer remainingChars={remainingChars}></Footer>
     </div>
   );

@@ -1,7 +1,7 @@
 import findMe from "../../assets/findMe.png";
 import { useState, useRef } from "react";
 
-export default function Content({ checkCoords }) {
+export default function Content({ checkCoords, flash }) {
   const imgRef = useRef(null);
   const [menuVisibility, setMenuVisibility] = useState({
     x: 0,
@@ -10,6 +10,10 @@ export default function Content({ checkCoords }) {
   });
   const [x, setx] = useState(0);
   const [y, sety] = useState(0);
+
+  function closeMenu() {
+    setMenuVisibility((prev) => ({ ...prev, visible: false }));
+  }
 
   function clickHandle(e) {
     const img = imgRef.current;
@@ -48,10 +52,18 @@ export default function Content({ checkCoords }) {
       />
       {menuVisibility.visible && (
         <div
-          className="font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-4 rounded border-2 border-[#00001b]"
+          className={`font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-4 rounded border-4 border-[#00001b] ${flash ? "flash-red" : ""}`}
           style={{ top: menuVisibility.y, left: menuVisibility.x }}
         >
-          <h1 className="text-xl">Choose your character</h1>
+          <div className="flex justify-between gap-3">
+            <h1 className="text-xl">Choose your character</h1>
+            <button
+              onClick={closeMenu}
+              className="w-6 h-6 rounded-full border border-black font-bold text-[#E7CD78] bg-[#00001b] hover:shadow-[0_10px_10px_#c4a85e] hover:text-[#c4a85e]"
+            >
+              x
+            </button>
+          </div>
           <ul>
             <li
               onClick={() => checkCoords(x, y, 1)}
