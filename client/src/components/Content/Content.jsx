@@ -42,13 +42,13 @@ export default function Content({ checkCoords, flash }) {
   }
 
   return (
-    <div className="relative flex-1 flex justify-center items-center">
+    <div className="relative flex-1 flex justify-center items-center bg-[#00001b] ">
       <img
         ref={imgRef}
         onClick={clickHandle}
         src={findMe}
         alt="Find me picture."
-        className="h-full w-auto auto-contain cursor-pointer"
+        className="h-full w-auto auto-contain cursor-pointer border-4 border-[#E7CD78] rounded"
       />
       {menuVisibility.visible && (
         <div
