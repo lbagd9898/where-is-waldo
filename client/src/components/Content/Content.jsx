@@ -54,22 +54,22 @@ export default function Content({ checkCoords }) {
           <h1 className="text-xl">Choose your character</h1>
           <ul>
             <li
-              onClick={() => checkCoords(x, y)}
+              onClick={() => checkCoords(x, y, 1)}
               className="pl-1 hover:bg-[#D4B84F] cursor-pointer"
             >
-              Ron
+              Ghoul
             </li>
             <li
-              onClick={() => checkCoords(x, y)}
+              onClick={() => checkCoords(x, y, 2)}
               className="pl-1 hover:bg-[#D4B84F] cursor-pointer"
             >
               Ogre
             </li>
             <li
-              onClick={() => checkCoords(x, y)}
+              onClick={() => checkCoords(x, y, 3)}
               className="pl-1 hover:bg-[#D4B84F] cursor-pointer"
             >
-              Ghoul
+              Ron
             </li>
           </ul>
         </div>

@@ -24,7 +24,7 @@ export default function Header() {
     <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-9 justify-between items-center">
       <h1 class="text-3xl">Where are the Wizards?</h1>
       <div class="flex gap-4 items-center absolute left-1/2 transform -translate-x-1/2">
-        <p class="text-xl">Find the Wizards:</p>
+        <p class="text-2xl">Find the Wizards:</p>
         <div class="flex items-center gap-3">
           <div class="flex flex-col items-center gap-2">
             <img src={ron} alt="" className="w-12 h-12 rounded-full" />
