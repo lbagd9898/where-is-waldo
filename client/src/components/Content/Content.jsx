@@ -1,7 +1,7 @@
 import findMe from "../../assets/findMe.png";
 import { useState, useRef } from "react";
 
-export default function Content({ checkCoords, flash }) {
+export default function Content({ checkCoords, flash, greenFlash }) {
   const imgRef = useRef(null);
   const [menuVisibility, setMenuVisibility] = useState({
     x: 0,
@@ -52,7 +52,7 @@ export default function Content({ checkCoords, flash }) {
       />
       {menuVisibility.visible && (
         <div
-          className={`font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-4 rounded border-4 border-[#00001b] ${flash ? "flash-red" : ""}`}
+          className={`font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-4 rounded border-4 border-[#00001b] ${flash ? "flash-red" : ""} ${greenFlash ? "flash-green" : ""}`}
           style={{ top: menuVisibility.y, left: menuVisibility.x }}
         >
           <div className="flex justify-between gap-3">

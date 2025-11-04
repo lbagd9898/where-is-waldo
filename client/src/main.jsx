@@ -12,12 +12,32 @@ import {
 
 function Main() {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [username, setUsername] = useState("");
+
+  const saveUsername = (input) => {
+    console.log(input);
+    setUsername(input);
+  };
+
+  const signIn = () => setIsSignedIn(true);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Signup />}></Route>
-        <Route path="/play" element={<App />}></Route>
+        <Route
+          path="/"
+          element={
+            <Signup
+              saveUsername={saveUsername}
+              signIn={signIn}
+              isSignedIn={isSignedIn}
+            />
+          }
+        ></Route>
+        <Route
+          path="/play"
+          element={isSignedIn ? <App /> : <Navigate to="/" replace />}
+        ></Route>
       </Routes>
     </Router>
   );

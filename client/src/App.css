@@ -22,3 +22,35 @@
 .flash-red {
   animation: flashRed 2s;
 }
+
+@keyframes flashGreen {
+  0% {
+    border-color: none;
+  }
+  50% {
+    border-color: green;
+  }
+  100% {
+    border-color: none;
+  }
+}
+
+.flash-green {
+  animation: flashGreen 2s;
+}
+
+@keyframes flashConstraints {
+  0% {
+    color: #e7cd78;
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: #e7cd78;
+  }
+}
+
+.flash-constraints {
+  animation: flashConstraints 2s;
+}

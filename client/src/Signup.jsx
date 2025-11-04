@@ -1,8 +1,11 @@
 import "./Signup.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup({ saveUsername, signIn, isSignedIn }) {
   const [inputVal, setInputVal] = useState("");
+  const navigate = useNavigate();
+  const [flashConstraints, setFlashConstraints] = useState(false);
 
   function onChange(e) {
     setInputVal(e.target.value);
@@ -11,7 +14,21 @@ export default function Signup() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (inputVal.length > 3) {
+      saveUsername(inputVal);
+      signIn();
+    } else {
+      console.log("not long enough");
+      setTimeout(() => setFlashConstraints(true), 1000);
+      setFlashConstraints(false);
+    }
   }
+
+  useEffect(() => {
+    if (isSignedIn) {
+      navigate("/play");
+    }
+  }, [isSignedIn]);
 
   return (
     <div>
@@ -32,6 +49,11 @@ export default function Signup() {
             Submit{" "}
           </button>
         </form>
+        <p
+          className={`font-harryPotter text-[#E7CD78] ${flashConstraints ? "flash-constraints" : ""}`}
+        >
+          Username must be 3 characters or more.
+        </p>
       </div>
     </div>
   );
