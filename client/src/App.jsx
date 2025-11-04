@@ -94,6 +94,23 @@ function App({ username }) {
     }
   }, [remainingChars]);
 
+  //if player wins, winner data is enterred into server db
+  useEffect(() => {
+    if (!won) return;
+    console.log("sending server data");
+    const payload = { username, secondsElapsed };
+    fetch("http://localhost:3000/enter-winner", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  }, [won]);
+
   return (
     <div class="w-full">
       <Header secondsElapsed={secondsElapsed}></Header>

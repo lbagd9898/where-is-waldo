@@ -11,7 +11,7 @@ export default function Footer({ remainingChars }) {
   const ghoulRef = useRef(null);
 
   return (
-    <footer class="font-harryPotter text-[#E7CD78] bg-[#00001b] p-9 flex justify-center items-center gap-3">
+    <footer class="h-36 font-harryPotter text-[#E7CD78] bg-[#00001b] p-9 flex justify-center items-center gap-3">
       <div class="text-2xl">Remaining Wizards: </div>
       <div class="flex items-center gap-3">
         <CSSTransition
