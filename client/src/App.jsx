@@ -1,21 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Content from "./components/Content/Content";
 import Footer from "./components/Footer/Footer";
 import "./fonts.css";
+import WinnerModal from "./components/WinnerModal/WinnerModal";
 
-function App() {
+function App({ username }) {
   //interval to time user as they play
   const [secondsElapsed, setSecondsElapsed] = useState(0);
+  const [clockRunning, setClockRunning] = useState(true);
+  const [won, setWon] = useState(false);
+  //mutable variable to keep track of seconds elapsed
+  const interval = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSecondsElapsed((prev) => prev + 1);
-    }, 1000);
+    if (clockRunning) {
+      interval.current = setInterval(() => {
+        setSecondsElapsed((prev) => prev + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval.current);
+  }, [clockRunning]);
 
-    return () => clearInterval(interval);
-  }, []);
+  function stopTimer() {
+    setClockRunning(false);
+    clearInterval(interval.current);
+    console.log(secondsElapsed);
+  }
 
   //user's remaining characters to find
   const [remainingChars, setRemainingChars] = useState({
@@ -77,18 +89,28 @@ function App() {
     );
     if (allFalse) {
       console.log("you won!");
+      stopTimer();
+      setWon(true);
     }
   }, [remainingChars]);
 
   return (
-    <div class={`flex flex-col h-screen`}>
+    <div class="w-full">
       <Header secondsElapsed={secondsElapsed}></Header>
       <Content
         checkCoords={checkCoords}
         flash={flash}
         greenFlash={greenFlash}
+        won={won}
       ></Content>
       <Footer remainingChars={remainingChars}></Footer>
+      {won && (
+        <WinnerModal
+          username={username}
+          secondsElapsed={secondsElapsed}
+          won={won}
+        />
+      )}
     </div>
   );
 }

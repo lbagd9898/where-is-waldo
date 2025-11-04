@@ -36,7 +36,13 @@ function Main() {
         ></Route>
         <Route
           path="/play"
-          element={isSignedIn ? <App /> : <Navigate to="/" replace />}
+          element={
+            isSignedIn ? (
+              <App username={username} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
         ></Route>
       </Routes>
     </Router>

@@ -1,7 +1,7 @@
 import findMe from "../../assets/findMe.png";
 import { useState, useRef } from "react";
 
-export default function Content({ checkCoords, flash, greenFlash }) {
+export default function Content({ checkCoords, flash, greenFlash, won }) {
   const imgRef = useRef(null);
   const [menuVisibility, setMenuVisibility] = useState({
     x: 0,
@@ -50,7 +50,7 @@ export default function Content({ checkCoords, flash, greenFlash }) {
         alt="Find me picture."
         className="h-full w-auto auto-contain cursor-pointer border-4 border-[#E7CD78] rounded"
       />
-      {menuVisibility.visible && (
+      {menuVisibility.visible && !won && (
         <div
           className={`font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-4 rounded border-4 border-[#00001b] ${flash ? "flash-red" : ""} ${greenFlash ? "flash-green" : ""}`}
           style={{ top: menuVisibility.y, left: menuVisibility.x }}
