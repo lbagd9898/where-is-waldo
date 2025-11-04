@@ -1,4 +1,4 @@
-export default function WinnerModal({ username, secondsElapsed }) {
+export default function WinnerModal({ username, secondsElapsed, error }) {
   const seconds = secondsElapsed % 60;
   const hours = Math.floor(secondsElapsed / 3600);
   const minutes = Math.floor((secondsElapsed % 3600) / 60);
@@ -13,6 +13,9 @@ export default function WinnerModal({ username, secondsElapsed }) {
           {format(hours)}:{format(minutes)}:{format(seconds)}
         </p>
         <h2> Well done! </h2>
+        {error && (
+          <p>We were unable to send your score to the server, sorry.</p>
+        )}
       </div>
     </div>
   );

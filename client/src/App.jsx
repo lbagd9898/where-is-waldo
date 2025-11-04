@@ -5,6 +5,7 @@ import Content from "./components/Content/Content";
 import Footer from "./components/Footer/Footer";
 import "./fonts.css";
 import WinnerModal from "./components/WinnerModal/WinnerModal";
+import ServerError from "./components/ServerError/ServerError";
 
 function App({ username }) {
   //interval to time user as they play
@@ -13,6 +14,8 @@ function App({ username }) {
   const [won, setWon] = useState(false);
   //mutable variable to keep track of seconds elapsed
   const interval = useRef(null);
+  const [error, setError] = useState(null);
+  const [serverError, setServerError] = useState(false);
 
   useEffect(() => {
     if (clockRunning) {
@@ -58,7 +61,10 @@ function App({ username }) {
           hitChar(data.char);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setServerError(true);
+      });
   }
 
   function missedChord() {
@@ -108,7 +114,10 @@ function App({ username }) {
       .then((data) => {
         console.log(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error.error);
+        setError(error.error);
+      });
   }, [won]);
 
   return (
@@ -126,8 +135,10 @@ function App({ username }) {
           username={username}
           secondsElapsed={secondsElapsed}
           won={won}
+          error={error}
         />
       )}
+      {serverError && <ServerError />}
     </div>
   );
 }
