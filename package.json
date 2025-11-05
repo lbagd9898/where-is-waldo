@@ -1,0 +1,11 @@
+{
+  "name": "where-is-waldo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server/app.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
