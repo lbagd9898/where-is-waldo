@@ -10,7 +10,7 @@ export default function Header({ secondsElapsed }) {
   const format = (time) => time.toString().padStart(2, "0");
 
   return (
-    <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-9 md:p-6 justify-between items-center">
+    <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-9 justify-between items-center">
       <h1 class="text-3xl md:text-2xl text-wrap">Where are the Wizards?</h1>
       <div class="flex gap-4 items-center absolute left-1/2 transform -translate-x-1/2">
         <p class="text-2xl">Find the Wizards:</p>

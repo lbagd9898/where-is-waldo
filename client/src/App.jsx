@@ -121,7 +121,7 @@ function App({ username }) {
   }, [won]);
 
   return (
-    <div class="w-full">
+    <div class="w-full h-full">
       <Header secondsElapsed={secondsElapsed}></Header>
       <Content
         checkCoords={checkCoords}
