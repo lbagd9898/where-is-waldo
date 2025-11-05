@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server/app.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "postinstall": "npx prisma generate --schema server/prisma/schema.prisma"
+    "postinstall": "cd server && npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
