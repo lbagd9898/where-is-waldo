@@ -11,8 +11,8 @@ export default function Footer({ remainingChars }) {
   const ghoulRef = useRef(null);
 
   return (
-    <footer class="h-36 bottom-0 font-harryPotter text-[#E7CD78] bg-[#00001b] p-9 flex justify-center items-center gap-3">
-      <div class="text-2xl">Remaining Wizards: </div>
+    <footer class="bottom-0 font-harryPotter text-[#E7CD78] bg-[#00001b] p-6 flex justify-center items-center gap-3">
+      <div class="text-xl lg:text-2xl">Remaining Wizards: </div>
       <div class="flex items-center gap-3">
         <CSSTransition
           in={remainingChars.ron}
@@ -22,7 +22,11 @@ export default function Footer({ remainingChars }) {
           unmountOnExit
         >
           <div ref={ronRef} class="flex flex-col items-center gap-2">
-            <img src={ron} alt="" className="w-12 h-12 rounded-full" />
+            <img
+              src={ron}
+              alt=""
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
+            />
             <p>Ron</p>
           </div>
         </CSSTransition>
@@ -34,7 +38,11 @@ export default function Footer({ remainingChars }) {
           unmountOnExit
         >
           <div ref={ogreRef} class="flex flex-col items-center gap-2">
-            <img src={ogre} alt="" className="w-12 h-12 rounded-full" />
+            <img
+              src={ogre}
+              alt=""
+              className="w-10 h-10 lg:w-12 lg:h-12  rounded-full"
+            />
             <p>Ogre</p>
           </div>
         </CSSTransition>
@@ -46,7 +54,11 @@ export default function Footer({ remainingChars }) {
           unmountOnExit
         >
           <div ref={ghoulRef} class="flex flex-col items-center gap-2">
-            <img src={ghoul} alt="" className="w-12 h-12 rounded-full" />
+            <img
+              src={ghoul}
+              alt=""
+              className="w-10 h-10 lg:w-12 lg:h-12  rounded-full"
+            />
             <p>Ghoul</p>
           </div>
         </CSSTransition>

@@ -10,21 +10,33 @@ export default function Header({ secondsElapsed }) {
   const format = (time) => time.toString().padStart(2, "0");
 
   return (
-    <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-9 justify-between items-center">
-      <h1 class="text-3xl md:text-2xl text-wrap">Where are the Wizards?</h1>
-      <div class="flex gap-4 items-center absolute left-1/2 transform -translate-x-1/2">
-        <p class="text-2xl">Find the Wizards:</p>
+    <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-11 m:p-11 lg:p-9 xl:p7 justify-between items-center">
+      <h1 class="text-xl lg:text-2xl text-wrap">Where are the Wizards?</h1>
+      <div class="gap-4 hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
+        <p class="text-2xl hidden lg:block">Find the Wizards:</p>
         <div class="flex items-center gap-3">
           <div class="flex flex-col items-center gap-2">
-            <img src={ron} alt="" className="w-12 h-12 rounded-full" />
+            <img
+              src={ron}
+              alt=""
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
+            />
             <p>Ron</p>
           </div>
           <div class="flex flex-col items-center gap-2">
-            <img src={ogre} alt="" className="w-12 h-12 rounded-full" />
+            <img
+              src={ogre}
+              alt=""
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
+            />
             <p>Ogre</p>
           </div>
           <div class="flex flex-col items-center gap-2">
-            <img src={ghoul} alt="" className="w-12 h-12 rounded-full" />
+            <img
+              src={ghoul}
+              alt=""
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
+            />
             <p>Ghoul</p>
           </div>
         </div>

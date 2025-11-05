@@ -48,18 +48,20 @@ export default function Content({ checkCoords, flash, greenFlash, won }) {
         onClick={clickHandle}
         src={findMe}
         alt="Find me picture."
-        className="h-full w-auto auto-contain cursor-pointer border-4 border-[#E7CD78] rounded"
+        className="h-full max-h-[65vh] w-auto auto-contain cursor-pointer border-4 border-[#E7CD78] rounded"
       />
       {menuVisibility.visible && !won && (
         <div
-          className={`font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-4 rounded border-4 border-[#00001b] ${flash ? "flash-red" : ""} ${greenFlash ? "flash-green" : ""}`}
+          className={`font-harryPotter fixed z-[200] bg-[#E7CD78] text-[#00001b] p-2 md:p-3 lg:p-4 rounded border-2 md:border-3 lg:border-4 border-[#00001b] ${flash ? "flash-red" : ""} ${greenFlash ? "flash-green" : ""}`}
           style={{ top: menuVisibility.y, left: menuVisibility.x }}
         >
-          <div className="flex justify-between gap-3">
-            <h1 className="text-xl">Choose your character</h1>
+          <div className="flex justify-between gap-2 md:gap-3">
+            <h1 className=" text-sm sm:text-base md:text-lg lg:text-xl">
+              Choose your character
+            </h1>
             <button
               onClick={closeMenu}
-              className="w-6 h-6 rounded-full border border-black font-bold text-[#E7CD78] bg-[#00001b] hover:shadow-[0_10px_10px_#c4a85e] hover:text-[#c4a85e]"
+              className="w-5 h-5 lg:w-6 lg:h-6 text-xs md:text-sm lg:text-base rounded-full border border-black font-bold text-[#E7CD78] bg-[#00001b] hover:shadow-[0_10px_10px_#c4a85e] hover:text-[#c4a85e]"
             >
               x
             </button>
@@ -67,19 +69,19 @@ export default function Content({ checkCoords, flash, greenFlash, won }) {
           <ul>
             <li
               onClick={() => checkCoords(x, y, 1)}
-              className="pl-1 hover:bg-[#D4B84F] cursor-pointer"
+              className="pl-1 text-xs md:text-sm lg:text-base hover:bg-[#D4B84F] cursor-pointer"
             >
               Ghoul
             </li>
             <li
               onClick={() => checkCoords(x, y, 2)}
-              className="pl-1 hover:bg-[#D4B84F] cursor-pointer"
+              className="pl-1 text-xs md:text-sm lg:text-base hover:bg-[#D4B84F] cursor-pointer"
             >
               Ogre
             </li>
             <li
               onClick={() => checkCoords(x, y, 3)}
-              className="pl-1 hover:bg-[#D4B84F] cursor-pointer"
+              className="pl-1 text-xs md:text-sm lg:text-base hover:bg-[#D4B84F] cursor-pointer"
             >
               Ron
             </li>
