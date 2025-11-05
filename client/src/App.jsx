@@ -48,7 +48,7 @@ function App({ username }) {
   async function checkCoords(x, y, charId) {
     const payload = { x, y, charId };
     console.log(payload);
-    fetch("http://localhost:3000/check-data", {
+    fetch("http://localhost:3000/api/check-data", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -105,7 +105,7 @@ function App({ username }) {
     if (!won) return;
     console.log("sending server data");
     const payload = { username, secondsElapsed };
-    fetch("http://localhost:3000/enter-winner", {
+    fetch("http://localhost:3000/api/enter-winner", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

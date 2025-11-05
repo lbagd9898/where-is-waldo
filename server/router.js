@@ -1,6 +1,6 @@
-const { Router } = require("express");
+const express = require("express");
 const prisma = require("./prismaClient");
-const router = Router();
+const router = express.Router();
 
 router.get("/", (req, res) => {
   res.send("server up and running");
@@ -55,7 +55,7 @@ router.get("/get-highscore", async (req, res) => {
     console.log("server reached");
     const highscore = await prisma.highscores.findFirst({
       orderBy: {
-        score: "desc",
+        score: "asc",
       },
     });
     console.log(highscore);

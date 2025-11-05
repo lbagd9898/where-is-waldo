@@ -20,7 +20,7 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
   //fetch highscore data from server
   useEffect(() => {
     try {
-      fetch("http://localhost:3000/get-highscore")
+      fetch("http://localhost:3000/api/get-highscore")
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
