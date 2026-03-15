@@ -17,22 +17,25 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
 
   const format = (time) => time.toString().padStart(2, "0");
 
-  //fetch highscore data from server
   useEffect(() => {
-    try {
-      fetch("http://localhost:3000/get-highscore")
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setCurrentWinner(data.name);
-          setCurrentHighScore(data.score);
-          setLoading(false);
-        });
-    } catch (e) {
-      console.error(e);
-      setError("Failed to load highscore");
-      setLoading(false);
-    }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+
+    fetch(`${import.meta.env.VITE_API_URL}/get-highscore`, {
+      signal: controller.signal,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCurrentWinner(data.name);
+        setCurrentHighScore(data.score);
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.error(e);
+        setError("Failed to load highscore");
+        setLoading(false);
+      })
+      .finally(() => clearTimeout(timeout));
   }, []);
 
   function onChange(e) {
@@ -42,7 +45,7 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (inputVal.length > 3) {
+    if (inputVal.length >= 3) {
       saveUsername(inputVal);
       signIn();
     } else {
@@ -67,32 +70,36 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
 
   return (
     <div>
-      <div className="flex flex-col border-4 justify-center items-center border-[#E7CD78] p-4 font-harryPotter text-[#E7CD78] bg-[#00001b] gap-3">
-        <h1 className="text-2xl">Welcome to Wizard Catching.</h1>
-        <h2>Enter a username to begin.</h2>
-        <form className="flex gap-4" onSubmit={handleSubmit}>
+      <div className="flex flex-col border-4 justify-center items-center border-[#E7CD78] p-3 md:p-6 lg:p-8 font-harryPotter text-[#E7CD78] bg-[#00001b] gap-2 md:gap-4 lg:gap-6">
+        <h1 className="text-xl md:text-3xl lg:text-4xl">
+          Welcome to Wizard Catching.
+        </h1>
+        <h2 className="text-sm md:text-lg lg:text-xl">
+          Enter a username to begin.
+        </h2>
+        <form className="flex gap-3 md:gap-5 lg:gap-6" onSubmit={handleSubmit}>
           <input
             onChange={onChange}
             value={inputVal}
-            className="round text-[#00001b] p-1"
+            className="round text-[#00001b] p-1 md:p-2 lg:p-2 md:text-base lg:text-lg"
             type="text"
           />
           <button
             type="submit"
-            className="border-2 border-[#E7CD78] py-1 px-2 rounded-lg hover:bg-[#000066]"
+            className="border-2 border-[#E7CD78] active:scale-95 transition-transform py-1 px-2 md:py-2 md:px-3 lg:py-2 lg:px-5 rounded-lg hover:bg-[#000066] md:text-base lg:text-lg"
           >
             Submit{" "}
           </button>
         </form>
         <p
-          className={`font-harryPotter text-[#E7CD78] ${flashConstraints ? "flash-constraints" : ""}`}
+          className={`font-harryPotter text-[#E7CD78] text-sm md:text-base lg:text-lg ${flashConstraints ? "flash-constraints" : ""}`}
         >
           Username must be 3 characters or more.
         </p>
         {error ? (
-          <p>{error}</p>
+          <p className="text-sm md:text-base lg:text-lg">{error}</p>
         ) : (
-          <p className="text-xl">
+          <p className="text-base md:text-xl lg:text-2xl">
             Current Highscore: {currentWinner} - {format(hours)}:
             {format(minutes)}:{format(seconds)}
           </p>

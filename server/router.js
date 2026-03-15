@@ -55,7 +55,7 @@ router.get("/get-highscore", async (req, res) => {
     console.log("server reached");
     const highscore = await prisma.highscores.findFirst({
       orderBy: {
-        score: "desc",
+        score: "asc",
       },
     });
     console.log(highscore);

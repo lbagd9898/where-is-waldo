@@ -11,9 +11,9 @@ export default function Footer({ remainingChars }) {
   const ghoulRef = useRef(null);
 
   return (
-    <footer class="bottom-0 font-harryPotter text-[#E7CD78] bg-[#00001b] p-6 flex justify-center items-center gap-3">
-      <div class="text-xl lg:text-2xl">Remaining Wizards: </div>
-      <div class="flex items-center gap-3">
+    <footer className="bottom-0 font-harryPotter text-[#E7CD78] bg-[#00001b] p-6 flex justify-center items-center gap-3">
+      <div className="text-xl lg:text-2xl">Remaining Wizards: </div>
+      <div className="flex items-center gap-3">
         <CSSTransition
           in={remainingChars.ron}
           timeout={500}
@@ -21,7 +21,7 @@ export default function Footer({ remainingChars }) {
           nodeRef={ronRef}
           unmountOnExit
         >
-          <div ref={ronRef} class="flex flex-col items-center gap-2">
+          <div ref={ronRef} className="flex flex-col items-center gap-2">
             <img
               src={ron}
               alt=""
@@ -37,11 +37,11 @@ export default function Footer({ remainingChars }) {
           nodeRef={ogreRef}
           unmountOnExit
         >
-          <div ref={ogreRef} class="flex flex-col items-center gap-2">
+          <div ref={ogreRef} className="flex flex-col items-center gap-2">
             <img
               src={ogre}
               alt=""
-              className="w-10 h-10 lg:w-12 lg:h-12  rounded-full"
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
             />
             <p>Ogre</p>
           </div>
@@ -53,11 +53,11 @@ export default function Footer({ remainingChars }) {
           nodeRef={ghoulRef}
           unmountOnExit
         >
-          <div ref={ghoulRef} class="flex flex-col items-center gap-2">
+          <div ref={ghoulRef} className="flex flex-col items-center gap-2">
             <img
               src={ghoul}
               alt=""
-              className="w-10 h-10 lg:w-12 lg:h-12  rounded-full"
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
             />
             <p>Ghoul</p>
           </div>

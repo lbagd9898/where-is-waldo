@@ -10,12 +10,12 @@ export default function Header({ secondsElapsed }) {
   const format = (time) => time.toString().padStart(2, "0");
 
   return (
-    <header class="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-11 m:p-11 lg:p-9 xl:p7 justify-between items-center">
-      <h1 class="text-xl lg:text-2xl text-wrap">Where are the Wizards?</h1>
-      <div class="gap-4 hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-        <p class="text-2xl hidden lg:block">Find the Wizards:</p>
-        <div class="flex items-center gap-3">
-          <div class="flex flex-col items-center gap-2">
+    <header className="font-harryPotter text-[#E7CD78] bg-[#00001b] relative flex flex-row p-11 m:p-11 lg:p-9 xl:p7 justify-between items-center">
+      <h1 className="text-xl lg:text-2xl text-wrap">Where are the Wizards?</h1>
+      <div className="gap-4 hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
+        <p className="text-2xl hidden lg:block">Find the Wizards:</p>
+        <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center gap-2">
             <img
               src={ron}
               alt=""
@@ -23,7 +23,7 @@ export default function Header({ secondsElapsed }) {
             />
             <p>Ron</p>
           </div>
-          <div class="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
             <img
               src={ogre}
               alt=""
@@ -31,7 +31,7 @@ export default function Header({ secondsElapsed }) {
             />
             <p>Ogre</p>
           </div>
-          <div class="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
             <img
               src={ghoul}
               alt=""
@@ -41,7 +41,7 @@ export default function Header({ secondsElapsed }) {
           </div>
         </div>
       </div>
-      <div class="text-xl">
+      <div className="text-xl">
         Time: {format(hours)}:{format(minutes)}:{format(seconds)}
       </div>
     </header>
