@@ -21,7 +21,7 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
 
-    fetch(`${import.meta.env.VITE_API_URL}/get-highscore`, {
+    fetch(`/get-highscore`, {
       signal: controller.signal,
     })
       .then((response) => response.json())

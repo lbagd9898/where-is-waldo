@@ -43,7 +43,7 @@ function App({ username }) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
 
-    fetch(`${import.meta.env.VITE_API_URL}/check-data`, {
+    fetch(`/check-data`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -104,7 +104,7 @@ function App({ username }) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
 
-    fetch(`${import.meta.env.VITE_API_URL}/enter-winner`, {
+    fetch(`/enter-winner`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
