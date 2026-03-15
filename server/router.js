@@ -2,9 +2,9 @@ const { Router } = require("express");
 const prisma = require("./prismaClient");
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("server up and running");
-});
+// router.get("/", (req, res) => {
+//   res.send("server up and running");
+// });
 
 router.post("/check-data", async (req, res) => {
   try {
