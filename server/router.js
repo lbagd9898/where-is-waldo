@@ -36,11 +36,23 @@ router.post("/check-data", async (req, res) => {
 router.post("/enter-winner", async (req, res) => {
   try {
     console.log("connected to server");
-    const body = req.body;
+    const { username, secondsElapsed } = req.body;
+
+    if (
+      typeof secondsElapsed !== "number" ||
+      secondsElapsed <= 0 ||
+      !Number.isInteger(secondsElapsed)
+    ) {
+      return res.status(400).json({ error: "Invalid score" });
+    }
+
+    if (typeof username !== "string" || username.trim().length === 0) {
+      return res.status(400).json({ error: "Invalid username" });
+    }
     await prisma.highscores.create({
       data: {
-        name: body.username,
-        score: body.secondsElapsed,
+        name: username,
+        score: secondsElapsed,
       },
     });
     return res.status(200).json({ message: "data enterred successfully" });
