@@ -19,7 +19,7 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
 
   useEffect(() => {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     fetch(`/get-highscore`, {
       signal: controller.signal,
