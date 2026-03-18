@@ -18,8 +18,6 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
   const format = (time) => time.toString().padStart(2, "0");
 
   useEffect(() => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
     fetch(`/get-highscore`, {
       signal: controller.signal,
     })
@@ -33,10 +31,7 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
         console.error(e);
         setError("Failed to load highscore");
         setLoading(false);
-      })
-      .finally(() => clearTimeout(timeout));
-
-    return () => controller.abort();
+      });
   }, []);
 
   function onChange(e) {
