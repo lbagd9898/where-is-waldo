@@ -18,9 +18,7 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
   const format = (time) => time.toString().padStart(2, "0");
 
   useEffect(() => {
-    fetch(`/get-highscore`, {
-      signal: controller.signal,
-    })
+    fetch(`/get-highscore`)
       .then((response) => response.json())
       .then((data) => {
         setCurrentWinner(data.name);
