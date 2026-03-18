@@ -20,7 +20,6 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
-
     fetch(`/get-highscore`, {
       signal: controller.signal,
     })
@@ -36,6 +35,8 @@ export default function Signup({ saveUsername, signIn, isSignedIn }) {
         setLoading(false);
       })
       .finally(() => clearTimeout(timeout));
+
+    return () => controller.abort();
   }, []);
 
   function onChange(e) {
